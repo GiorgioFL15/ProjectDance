@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'partials/_menu.html' %}
+    <main role="main">
+
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="static/img/bg-img/tomate_banner.jpg" class="d-block w-100 imagem-carrossel" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="static/img/bg-img/oleo.webp" class="d-block w-100 imagem-carrossel" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="static/img/bg-img/amora.jpg" class="d-block w-100 imagem-carrossel" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <!-- Mensagens de marketing e outras featurezinhas
+      ================================================== -->
+      <!-- Envolve o resto da página em outro container, para centralizar todo o conteúdo. -->
+
+      <div class="container marketing">
+
+        <!-- Três colunas de texto, abaixo do carousel -->
+        <div class="row">
+          <div class="col-lg-4">
+            <img class="rounded-circle" src="static/img/bg-img/dancaventre.jpg" alt="Generic placeholder image" width="140" height="140">
+            <h2>Dança do ventre</h2>
+            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+          </div><!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <img class="rounded-circle" src="static/img/bg-img/edfisica.jpg" alt="Generic placeholder image" width="140" height="140">
+            <h2>Educação Física</h2>
+            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+          </div><!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <img class="rounded-circle" src="static/img/bg-img/consultoria.jpg" alt="Generic placeholder image" width="140" height="140">
+            <h2>Consultorias</h2>
+            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+          </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+
+
+        <!-- COMEÇAM AS MENCIONADAS FEATUREZINHAS xD -->
+        {% if nome_das_noticias %}
+        {% for noticia in nome_das_noticias %}
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7" id="#list">
+            <a href="{% url 'noticia' noticia.id %}">
+            <h2 class="featurette-heading">{{ noticia.nome_noticia }}</h2>
+            </a>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          </div>
+          <div class="col-md-5">
+            {% if noticia.foto_noticia == null %}
+            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style="width: 500px; height: 500px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22500%22%20height%3D%22500%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1801daadb56%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A25pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1801daadb56%22%3E%3Crect%20width%3D%22500%22%20height%3D%22500%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22185.125%22%20y%3D%22261.1%22%3E500x500%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
+          {% else %}
+          <img class="new-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style="width: 500px; height: 500px;" src="{{ noticia.foto_noticia.url }}">
+            {% endif %}
+        </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        {% endif %}
+        <hr class="featurette-divider">
+
+        <!-- /FIM DAS FEATUREZINHAS *-* -->
+
+      </div><!-- /.container -->
+
+      <main>
+        <div class="row row-cols-1 row-cols-md-3 mt-5 text-center me-5 ms-5" id="price">
+          <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+              <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Light</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">R$46,90<small class="text-muted fw-light">/Mês</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>Portal Dança do Ventre no instagram</li>
+                  <li>2 aulas semanais gravadas</li>
+                  <li>Abordagem de diversos temas</li>
+                  
+                </ul>
+                <button type="button" class="w-100 btn btn-lg btn-outline-primary">Quero saber mais!!</button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+              <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Pro</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">R$70<small class="text-muted fw-light">/Mês</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>20 users included</li>
+                  <li>10 GB of storage</li>
+                  <li>Priority email support</li>
+                  <li>Help center access</li>
+                </ul>
+                <button type="button" class="w-100 btn btn-lg btn-primary">Get started</button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm border-primary">
+              <div class="card-header py-3 text-white bg-primary border-primary">
+                <h4 class="my-0 fw-normal">Master</h4>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">A combinar<small class="text-muted fw-light">/Aula</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>Consultoria</li>
+                  <li>Personal trainer</li>
+                  <li>Opções de atendimento presencial</li>
+                  <li>Avaliação e aula teste sem custos</li>
+                </ul>
+                <button type="button" class="w-100 btn btn-lg btn-primary">Contact us</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="container">
+        <p class="float-right"><a href="#">Voltar ao topo</a></p>
+        <p>© Nicole Faraash., 2020-2022 · <a href="#">Privacidade</a> · <a href="#">Termos</a></p>
+      </footer>
+    </main>
+
+{%endblock%}

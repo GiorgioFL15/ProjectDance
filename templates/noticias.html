@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'partials/_menu.html' %}
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        {% if noticia.foto_noticia == null %}
+        <img src="static/img/bg-img/tomate_banner.jpg" class="d-block w-100 imagem-carrossel" alt="...">
+        {% else %}
+        <img class="imagem-carrossel d-block w-100" alt="..." style= "height: 500px;" src="{{ noticia.foto_noticia.url }}">
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="receipe-content-area">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-12 col-md-8">
+                <div class="receipe-headline my-5">
+                    <span>{{ noticia.date_receita }}</span>
+                    <h2>{{ noticia.nome_noticia }}</h2>
+                    <div class="receipe-duration">
+                        <h6>Categoria: {{ noticia.categoria }}</h6>
+                        <h6>Por: {{ noticia.pessoa }}</h6>
+                    </div>
+                </div>
+            </div>
+
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <h4>Sobre:</h4>
+                <div class="single-preparation-step d-flex">
+                    <p>{{ noticia.escopo }}</p>
+                </div>
+            </div>
+
+            <!-- Ingredientes -->
+            <div class="row">
+            <div class="col-12 col-lg-4">
+                <div class="ingredients">
+                    <h4>Referencias</h4>
+                    <div class="ingredients">
+                        <p>{{ noticia.referencias }}</p>
+                    </p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{%endblock%}
